@@ -1,0 +1,296 @@
+/* Beginning of main.css file
+
+   main.css file for RWExport-To-HTML.ps1
+   by EightBitz
+   Version 0.9.1b and 0.95b
+   2017-02-01, 06:00 AM CST
+   
+   This file must accompany the resulting HTML file
+   as it defines the formatting of the HTML file.
+   If you know CSS, feel free to modify these definitions
+   To your liking.
+*/
+
+/* Realm Title */
+H1 {
+   font-weight:bold;
+   color:white;
+   background: #466368;
+   background: radial-gradient(#648880, #293f50);
+   letter-spacing:1pt;
+   word-spacing:2pt;
+   font-size:60px;
+   text-align:center;
+   font-family:helvetica, sans-serif;line-height:1;
+   margin:0px;
+   padding:10px;
+}
+
+/* Realm Details */
+H2 {
+   font-weight:normal;
+   font-style:italic;
+   color:black;
+   background-color:white;
+   letter-spacing:1pt;
+   word-spacing:2pt;
+   font-size:16px;
+   text-align:center;
+   font-family:helvetica, sans-serif;line-height:1;
+   margin:0px 200px 0px 200px;
+   padding:10px;
+}
+
+/* Topic Name */
+H3 {
+   font-weight:bold;
+   color:white;
+   background: #466368;
+   background: linear-gradient(to right bottom, #648880, #293f50);
+   letter-spacing:1pt;
+   word-spacing:2pt;
+   font-size:25px;
+   text-align:left;
+   font-family:helvetica, sans-serif;line-height:1;
+   margin:0px;
+   padding:10px;
+}
+
+/* Topic Details (Category, Parent, Linkage, Tags, etc ...) */
+H4 {
+   font-weight:normal;
+   font-family:helvetica, sans-serif;line-height:1;
+   font-size: 16px;
+   font-style:italic;
+   color:black;
+   background-color:#CCCCCC;
+   padding:10px;
+}
+
+/* Section Header */
+H5 {
+   font-weight:normal;
+   text-decoration:underline;
+   font-family:helvetica, sans-serif;line-height:1;
+   font-size: 20px;
+   background:white;
+   color: black;
+}
+
+/* Snippet Text */
+.snippet {
+	/* variables for all snippet elements */
+   --main-font-family:helvetica, sans-serif;
+   --main-font-size:16px;
+   --main-font-weight:normal;
+   --main-font-style:normal;
+   --main-text-decoration:normal;
+   --main-color:black;
+   --main-background-color:white;
+   --main-line-height:1;
+   --main-padding-top:0px;
+   --main-padding-right:0px;
+   --main-padding-bottom:0px;
+   --main-padding-left:0px;
+}
+
+.snippet P {
+	/* unformatted snippet text */
+   font-family:var(--main-font-family);
+   font-size:var(--main-font-size);
+   font-weight:var(--main-font-weight);
+   font-style:var(--main-font-style);
+   text-decoration:var(--text-decoration);
+   color:var(--main-color);
+   background-color:var(--main-background-color);
+   line-height:var(--main-line-height);
+   padding-top:var(--main-padding-top);
+   padding-right:var(--main-padding-right);
+   padding-bottom:var(--main-padding-bottom);
+   padding-left:var(--main-padding-left);
+}
+
+.snippet UL {
+	/* bulleted lists in snippets */
+	
+   /* This is for indenting lists. */	  
+   list-style-position: inside;
+   margin-left:20px;
+   /* You can change the 20px to your liking. */
+	
+   font-family:var(--main-font-family);
+   font-size:var(--main-font-size);
+   font-weight:var(--main-font-weight);
+   font-style:var(--main-font-style);
+   text-decoration:var(--text-decoration);
+   color:var(--main-color);
+   background-color:var(--main-background-color);
+   line-height:var(--main-line-height);
+   padding-top:var(--main-padding-top);
+   padding-right:var(--main-padding-right);
+   padding-bottom:var(--main-padding-bottom);
+   padding-left:var(--main-padding-left);
+}
+
+.snippet OL {
+	/* numbered lists in snippets */
+	
+   /* This is for indenting lists. */	  
+   list-style-position: inside;
+   margin-left:20px;
+   /* You can change the 20px to your liking. */
+   
+   font-family:var(--main-font-family);
+   font-size:var(--main-font-size);
+   font-weight:var(--main-font-weight);
+   font-style:var(--main-font-style);
+   text-decoration:var(--text-decoration);
+   color:var(--main-color);
+   background-color:var(--main-background-color);
+   line-height:var(--main-line-height);
+   padding-top:var(--main-padding-top);
+   padding-right:var(--main-padding-right);
+   padding-bottom:var(--main-padding-bottom);
+   padding-left:var(--main-padding-left);
+}
+
+.snippet TABLE {
+	/* tables within snippets */
+   font-family:var(--main-font-family);
+   font-size:var(--main-font-size);
+   font-weight:var(--main-font-weight);
+   font-style:var(--main-font-style);
+   text-decoration:var(--text-decoration);
+   color:var(--main-color);
+   background-color:var(--main-background-color);
+   line-height:0;
+   padding-top:var(--main-padding-top);
+   padding-right:var(--main-padding-right);
+   padding-bottom:var(--main-padding-bottom);
+   padding-left:var(--main-padding-left);
+}
+
+.snippet TABLE TR {
+	/* cells within snippet tables */
+   font-family:var(--main-font-family);
+   font-size:var(--main-font-size);
+   font-weight:var(--main-font-weight);
+   font-style:var(--main-font-style);
+   text-decoration:var(--text-decoration);
+   color:var(--main-color);
+   background-color:var(--main-background-color);
+   line-height:0;
+   padding-top:var(--main-padding-top);
+   padding-right:var(--main-padding-right);
+   padding-bottom:var(--main-padding-bottom);
+   padding-left:var(--main-padding-left);
+}
+
+.snippet TABLE TR TD {
+	/* text within table cells */
+   font-family:var(--main-font-family);
+   font-size:var(--main-font-size);
+   font-weight:var(--main-font-weight);
+   font-style:var(--main-font-style);
+   text-decoration:var(--text-decoration);
+   color:var(--main-color);
+   background-color:var(--main-background-color);
+   line-height:0;
+   padding-top:var(--main-padding-top);
+   padding-right:var(--main-padding-right);
+   padding-bottom:var(--main-padding-bottom);
+   padding-left:var(--main-padding-left);
+}
+
+.snippet TABLE TR TD P {
+   font-family:var(--main-font-family);
+   font-size:var(--main-font-size);
+   font-weight:var(--main-font-weight);
+   font-style:var(--main-font-style);
+   text-decoration:var(--text-decoration);
+   
+   color:var(--main-color);
+   background-color:var(--main-background-color); 
+   
+   /* If you use the -KeepStyles option, and your tables don't look right,
+   Replace the two color and background-color lines above with the two below. */
+   
+   /* color:transparent; */
+   /* background-color:transparent; */
+   
+   line-height:0;
+   padding-top:var(--main-padding-top);
+   padding-right:var(--main-padding-right);
+   padding-bottom:var(--main-padding-bottom);
+   padding-left:var(--main-padding-left);
+}
+/* The following items are for displaying inline stat blocks. */
+.StatBlockLink {
+   color:#0000FF;
+   background-color:transparent;
+   text-decoration: underline;
+   
+   font-family:var(--main-font-family);
+   font-size:var(--main-font-size);
+   font-weight:var(--main-font-weight);
+   font-style:var(--main-font-style);
+   line-height:var(--main-line-height);
+   padding-top:var(--main-padding-top);
+   padding-right:var(--main-padding-right);
+   padding-bottom:var(--main-padding-bottom);
+   padding-left:var(--main-padding-left);
+}
+
+.StatBlockSnippet {
+   font-family:var(--main-font-family);
+   font-size:var(--main-font-size);
+   font-weight:var(--main-font-weight);
+   font-style:var(--main-font-style);
+   text-decoration:var(--text-decoration);
+   color:var(--main-color);
+   background-color:var(--main-background-color);
+   line-height:var(--main-line-height);
+   padding-top:var(--main-padding-top);
+   padding-right:var(--main-padding-right);
+   padding-bottom:var(--main-padding-bottom);
+   padding-left:var(--main-padding-left);
+}
+
+.StatBlockDefault {
+   text-align:left;
+   text-indent:0pt;
+   margin:0pt 0pt 0pt 0pt
+}
+
+.StatBlockBullet {
+   text-align:left;
+   text-indent:-7pt;
+   margin:0pt 0pt 0pt 7pt}
+
+.StatBlockEnumerated {
+   text-align:left;
+   text-indent:-12pt;
+   margin:0pt 0pt 0pt 12pt
+}
+
+.StatBlock-td {
+   border-style:solid;
+   border-width: 1px; 
+   border-color: #a9a9a9;
+   padding: 1.5pt 4pt;
+}
+
+.StatBlock-tr.naked td {border-style:none;}
+.StatBlock-td.left {text-align:left;}
+.StatBlock-td.center {text-align:center;}
+.StatBlock-td.right {text-align:right;}
+
+.StatBlock-p.footer {margin-left:0.75em;
+   text-indent: -0.75em;
+   margin-top: 0;
+   margin-bottom: 0;
+}
+
+.StatBlock-p.smallgap {margin: 3pt 0 0 0;}
+.StatBlock-p.mediumgap {margin: 6pt 0 0 0;}
+/* End of main.css file */
