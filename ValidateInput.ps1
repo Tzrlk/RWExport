@@ -1,8 +1,8 @@
 ﻿<#
 Input Validation Script for RWExport-To-HTML.ps1
 by EightBitz
-Version 1.0
-2017-02-01, 01:00 PM CST
+Version 1.5
+2017-02-08, 10:00 AM CST
 #>
 
 param (
@@ -41,31 +41,32 @@ param (
     [Parameter(Mandatory,Position=9)] 
     [bool]$SplitTopics,
 
-    # Destination file path and name.
+    # Output format as "HTML" or "Word".
     [Parameter(Mandatory,Position=10)] 
+    [string]$Format,
+
+    # Destination file path and name.
+    [Parameter(Mandatory,Position=11)] 
     [bool]$CreateLog,
 
    # Destination file path and name.
-    [Parameter(Mandatory,Position=11)][AllowNull()][AllowEmptyString()]
+    [Parameter(Mandatory,Position=12)][AllowNull()][AllowEmptyString()]
     [string]$Log,
 
     # Destination file path and name.
-    [Parameter(Mandatory,Position=12)] 
+    [Parameter(Mandatory,Position=13)] 
     [string]$Validator
 ) # param
 
 # Function ValidateInput($Script,$Source,$Destination,$Sort,$SimpleImageScale,$SmartImageScale,$ExtractFiles,$CSSFileName,$SplitTopics,$CreateLog,$Log,$Validator) {
    $ValidInput = $true
-   
-   if (($Script.StartsWith("'")) -and ($Script.EndsWith("'"))) {$Script = $Script.TrimStart("'");$Script = $Script.TrimEnd("'")}
-   if (($Script.StartsWith('"')) -and ($Script.EndsWith('"'))) {$Script = $Script.TrimStart('"');$Script = $Script.TrimEnd('"')}
-   if (($Script.StartsWith('&("')) -and ($Script.EndsWith('")'))) {$Script = $Script.TrimStart('&("');$Script = $Script.TrimEnd('")')}
-   if (-not (Test-Path $Script)) {
-      $MsgTitle = "Bad Script"
-      $MsgText = "Cannot find PowerShell script."
-      
+   if (($Format -ne "HTML") -and ($Format -ne "Word")) {
+      $MsgTitle = "Bad Option"
+      $MsgText = "Valid options for -Format are HTML and Word."
+
       Switch ($Validator) {
          "Script" {
+            $MsgText = $MsgText + "`r`nPress any key to exit..."
             Write-Host ""
             Write-Host $MsgTitle
             Write-Host $MsgText
@@ -80,7 +81,35 @@ param (
             Return $ValidInput
          } # "GUI"
       } # Switch ($Validator)
-   } # if (-not (Test-Path $Script))
+   } # if (($Format -ne "HTML") -and ($Format -ne "Word"))
+
+   if ($Validator -eq "GUI") {
+      if (($Script.StartsWith("'")) -and ($Script.EndsWith("'"))) {$Script = $Script.TrimStart("'");$Script = $Script.TrimEnd("'")}
+      if (($Script.StartsWith('"')) -and ($Script.EndsWith('"'))) {$Script = $Script.TrimStart('"');$Script = $Script.TrimEnd('"')}
+      if (($Script.StartsWith('&("')) -and ($Script.EndsWith('")'))) {$Script = $Script.TrimStart('&("');$Script = $Script.TrimEnd('")')}
+      if (-not (Test-Path $Script)) {
+         $MsgTitle = "Bad Script"
+         $MsgText = "Cannot find PowerShell script."
+      
+         Switch ($Validator) {
+            "Script" {
+               $MsgText = $MsgText + "`r`nPress any key to exit..."
+               Write-Host ""
+               Write-Host $MsgTitle
+               Write-Host $MsgText
+               $anykey = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+               $ValidInput = $false
+               Return $ValidInput
+            } # "Script"
+            "GUI" {
+               $Msg = New-Object -ComObject Wscript.Shell
+               $OKMsg = $Msg.Popup($MsgText,0,$MsgTitle,0)
+               $ValidInput = $false
+               Return $ValidInput
+            } # "GUI"
+         } # Switch ($Validator)
+      } # if (-not (Test-Path $Script))
+   } # if ($Validator -eq "GUI")
 
    if (($Source.StartsWith("'")) -and ($Source.EndsWith("'"))) {$Source = $Source.TrimStart("'");$Source = $Source.TrimEnd("'")}
    if (($Source.StartsWith('"')) -and ($Source.EndsWith('"'))) {$Source = $Source.TrimStart('"');$Source = $Source.TrimEnd('"')}
@@ -267,7 +296,11 @@ param (
          } # Switch ($Validator)
       } # if ($TestPath)
    } else {
-      if (($Destination.EndsWith(".html")) -or ($Destination.EndsWith(".htm"))) {
+      Switch ($Format) {
+         "Word" {$extension1 = ".docx";$extension2 = ".doc"}
+         "HTML" {$extension1 = ".html";$extension2 = ".htm"}
+      } # Switch ($Format)
+      if (($Destination.EndsWith($extension1)) -or ($Destination.EndsWith($extension2))) {
           if (Test-Path $Destination) {
              $MsgTitle = "Overwrite Destination?"
              $MsgText = "Destination file exists.`r`nDo you wish to overwrite?"
@@ -380,7 +413,10 @@ param (
           } # if (Test-Path $Destination)
       } else {
          $MsgTitle = "Bad Destination"
-         $MsgText = "Destination filename shouold end with .html or .htm."
+         Switch ($Format) {
+            "Word" {$MsgText = "Word files should end with .docx or .doc."}
+            "HTML" {$MsgText = "HTML files should end with .html or .htm."}
+         } # Switch ($Format)
          Switch ($Validator) {
             "Script" {
                $MsgText = $MsgText + "`r`nPress any key to exit..."
